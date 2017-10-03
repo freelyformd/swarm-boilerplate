@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  whoami0:
+    image: emilevauge/whoami
+    networks: 
+      - traefik-net
+    deploy:
+      labels:
+        - traefik.port=80
+
+  whoami1:
+    image: emilevauge/whoami
+    networks:
+      - traefik-net
+    deploy:
+      labels:
+        - traefik.port=80
+        - traefik.backend.loadbalancer.sticky=true
+
+
+networks:
+  traefik-net:
+    external: true
