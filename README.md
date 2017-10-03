@@ -13,7 +13,7 @@ We use traefik to provide an automated reverse proxy
 
 ### watchtower
 
-To update our docker images when an image is updated
+To update running containers when an image is updated
 
 ### consul
 
