@@ -26,7 +26,6 @@ for D in *; do
         echo "Deploying ${D}"
         echo "--------------"
         cd "${D}"
-        docker-compose config
         docker stack deploy -c "./docker-compose.yml" "${D}" --with-registry-auth
         echo ""
         echo ""
