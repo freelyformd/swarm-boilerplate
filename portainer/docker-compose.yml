@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  web:
+    image: 'portainer/portainer'
+    networks:
+      - traefik-net
+    volumes:
+      - portainer_data:/data
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    deploy:
+      labels:
+        - "traefik.frontend.rule=Host:${PORTAINER_DOMAIN}"
+      placement:
+        constraints:
+          - node.role == manager
+
+networks:
+  traefik-net:
+    external: true
+
+volumes:
+  portainer_data:

@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  watchtower:
+    image: v2tec/watchtower
+    command: --interval 60
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /home/admin/.docker/config.json:/config.json
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
