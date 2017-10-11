@@ -12,7 +12,7 @@ services:
       labels:
         traefik.enable: "true"
         traefik.frontend.rule: 'Host: portainer.freelyformd.com'
-        traefik.port: 80
+        traefik.port: 9000
       placement:
         constraints:
           - node.role == manager
