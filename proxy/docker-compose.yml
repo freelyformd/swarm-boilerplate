@@ -13,8 +13,8 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     deploy:
       labels:
-        - "traefik.frontend.rule=Host:${TRAEFIK_UI_DOMAIN}"
-        - "traefik.port=8080"
+        traefik.frontend.rule: "Host:${TRAEFIK_UI_DOMAIN}"
+        traefik.port: 8080
       placement:
         constraints:
           - node.role == manager

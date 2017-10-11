@@ -1,8 +1,10 @@
 #!/bin/sh
 
-export PORTAINER_DOMAIN=portainer
-export TRAEFIK_UI_DOMAIN=proxy
-export CONSUL_UI_DOMAIN=consul
+export DOMAIN=local
+export PORTAINER_DOMAIN=portainer.${DOMAIN}
+export TRAEFIK_UI_DOMAIN=proxy.${DOMAIN}
+export CONSUL_UI_DOMAIN=consul.${DOMAIN}
+export GITLAB_DOMAIN=gitlab.${DOMAIN}
 
 if [ -f deployments.txt ]; then
 
