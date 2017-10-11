@@ -16,6 +16,7 @@ services:
       - gitlab_data:/var/opt/gitlab
     deploy:
       labels:
+        traefik.backend: omnibus
         traefik.frontend.rule: "Host:${GITLAB_DOMAIN}"
       placement:
         constraints:
