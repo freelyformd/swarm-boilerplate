@@ -1,14 +1,18 @@
 #!/bin/sh
 
-./.env
+if [ -f env.sh ]; then
+    echo "1. Applying config from env.sh"
+    source ./env.sh
+fi
 
 if [ -f deployments.txt ]; then
+
+    echo "2. Stopping removed stacks"
 
     while read p; do
 
         if [ ! -d $p ]; then
-            echo "Removing ${p}"
-            echo "--------------"
+            echo "--> Removing ${p}"
             docker stack rm "${p}"
         fi
 
@@ -20,15 +24,14 @@ fi
 
 for D in *; do
 
+    echo "3. Deploying current stacks"
+
     if [ -d "${D}" ]; then
-        echo "Deploying ${D}"
-        echo "--------------"
-        cd "${D}"
-        docker stack deploy -c "./docker-compose.yml" "${D}" --with-registry-auth
+        echo "--> Deploying ${D}"
+        docker stack deploy -c "./${D}/docker-compose.yml" "${D}" --with-registry-auth
         echo ""
         echo ""
         echo "${D}" >> deployments.txt
-        cd ../
     fi
 
 done
