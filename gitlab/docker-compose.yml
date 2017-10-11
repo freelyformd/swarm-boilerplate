@@ -17,6 +17,7 @@ services:
     deploy:
       labels:
         traefik.enable: "port"
+        traefik.frontend.rule: 'Host: lab.freelyformd.com'
         traefik.port: 80
       placement:
         constraints:

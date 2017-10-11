@@ -9,6 +9,10 @@ services:
       - portainer_data:/data
       - /var/run/docker.sock:/var/run/docker.sock:ro
     deploy:
+      labels:
+        traefik.enable: "true"
+        traefik.frontend.rule: 'Host: portainer.freelyformd.com'
+        traefik.port: 80
       placement:
         constraints:
           - node.role == manager
