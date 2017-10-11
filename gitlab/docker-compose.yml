@@ -16,8 +16,8 @@ services:
       - gitlab_data:/var/opt/gitlab
     deploy:
       labels:
-        traefik.backend: omnibus
-        traefik.frontend.rule: "Host:${GITLAB_DOMAIN}"
+        traefik.enable: "port"
+        traefik.port: 80
       placement:
         constraints:
           - node.role == manager
