@@ -22,9 +22,9 @@ if [ -f deployments.txt ]; then
 
 fi
 
-for D in *; do
+echo "3. Deploying current stacks"
 
-    echo "3. Deploying current stacks"
+for D in *; do
 
     if [ -d "${D}" ]; then
         echo "--> Deploying ${D}"
