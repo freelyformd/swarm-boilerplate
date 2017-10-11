@@ -4,6 +4,7 @@ services:
   traefik:
     image: traefik:alpine
     command: --docker --docker.swarmmode --docker.domain=${DOMAIN} --docker.watch --web
+    env_file: ../env
     ports:
       - 80:80
       - 8080:8080

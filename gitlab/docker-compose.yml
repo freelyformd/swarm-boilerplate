@@ -7,7 +7,7 @@ services:
     hostname: '${GITLAB_DOMAIN}'
     environment:
       GITLAB_OMNIBUS_CONFIG: |
-        external_url 'https://${GITLAB_DOMAIN}'
+        external_url 'http://${GITLAB_DOMAIN}'
     ports:
       - 2222:22
     volumes:

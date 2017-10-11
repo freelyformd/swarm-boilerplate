@@ -9,8 +9,6 @@ services:
       - portainer_data:/data
       - /var/run/docker.sock:/var/run/docker.sock:ro
     deploy:
-      labels:
-        traefik.frontend.rule: "Host:${PORTAINER_DOMAIN}"
       placement:
         constraints:
           - node.role == manager

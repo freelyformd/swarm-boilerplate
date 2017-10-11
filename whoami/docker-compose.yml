@@ -7,7 +7,8 @@ services:
       - traefik-net
     deploy:
       labels:
-        - traefik.port=80
+        traefik.enable: "true"
+        traefik.port: 80
 
   whoami1:
     image: emilevauge/whoami
@@ -15,6 +16,7 @@ services:
       - traefik-net
     deploy:
       labels:
+        traefik.enable: "true"
         traefik.port: 80
         traefik.backend.loadbalancer.sticky: "true"
 
