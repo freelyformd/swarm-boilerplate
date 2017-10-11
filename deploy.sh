@@ -2,7 +2,7 @@
 
 if [ -f env.sh ]; then
     echo "1. Applying config from env.sh"
-    source ./env.sh
+    ./env.sh
 fi
 
 if [ -f deployments.txt ]; then
