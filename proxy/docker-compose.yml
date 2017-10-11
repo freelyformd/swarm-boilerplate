@@ -6,16 +6,13 @@ services:
     command: --entryPoints="Name:http Address::80" --entryPoints="Name:https Address::443" --defaultentrypoints="http,https" --acme --acme.acmelogging="true" --acme.email="freelyformd@gmail.com" --acme.storage="acme.json" --acme.onhostrule="true" --docker --docker.swarmmode --docker.domain="freelyformd.com" --docker.watch --web
     ports:
       - 80:80
+      - 443:443
       - 8080:8080
     networks:
       - traefik-net
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     deploy:
-      labels:
-        traefik.enable: "true"
-        traefik.frontend.rule: 'Host: proxy.freelyformd.com'
-        traefik.port: 8080
       placement:
         constraints:
           - node.role == manager
