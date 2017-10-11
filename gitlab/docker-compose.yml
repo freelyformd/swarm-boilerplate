@@ -18,7 +18,7 @@ services:
       - gitlab_data:/var/opt/gitlab
     deploy:
       labels:
-        - traefik.frontend.rule: "Host:${GITLAB_DOMAIN}"
+        traefik.frontend.rule: "Host:${GITLAB_DOMAIN}"
       placement:
         constraints:
           - node.role == manager

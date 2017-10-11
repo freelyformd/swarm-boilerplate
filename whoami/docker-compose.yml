@@ -16,7 +16,7 @@ services:
     deploy:
       labels:
         traefik.port: 80
-        traefik.backend.loadbalancer.sticky: true
+        traefik.backend.loadbalancer.sticky: "true"
 
 
 networks:
