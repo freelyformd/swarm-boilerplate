@@ -3,7 +3,7 @@ version: '3'
 services:
   traefik:
     image: traefik:alpine
-    command: --entryPoints="Name:http Address::80" --entryPoints="Name:https Address::443 TLS:" --defaultentrypoints="http,https" --acme --acme.acmelogging="true" --acme.email="freelyformd@gmail.com" --acme.storage="acme.json" --acme.onhostrule="true" --docker --docker.swarmmode --docker.domain="freelyformd.com" --docker.watch --web
+    command: --entryPoints="Name:http Address::80" --entryPoints="Name:https Address::443 TLS" --defaultentrypoints="http,https" --acme --acme.acmelogging="true" --acme.email="freelyformd@gmail.com" --acme.storage="acme.json" --acme.onhostrule="true" --docker --docker.swarmmode --docker.domain="freelyformd.com" --docker.watch --web
     ports:
       - 80:80
       - 443:443
