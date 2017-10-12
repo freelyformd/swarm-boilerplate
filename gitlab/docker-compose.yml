@@ -50,7 +50,7 @@ services:
       - gitlab_runner_config:/etc/gitlab-runner
       - /var/run/docker.sock:/var/run/docker.sock
     deploy:
-      replicas: 8
+      replicas: 3
 
 volumes:
   gitlab_config:
