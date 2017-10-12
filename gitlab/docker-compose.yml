@@ -37,6 +37,7 @@ services:
         traefik.enable: "port"
         traefik.frontend.rule: 'Host: lab.freelyformd.com, registry.freelyformd.com'
         traefik.port: 80
+        traefik.docker.network: 'traefik-net'
       placement:
         constraints:
           - node.role == manager
