@@ -19,7 +19,7 @@ services:
         gitlab_rails['smtp_authentication'] = 'login'
         gitlab_rails['smtp_enable_starttls_auto'] = true
         gitlab_rails['smtp_user_name'] = 'lab@freelyformd.com'
-        gitlab_rails['smtp_password'] = 'freelyformd$$'
+        gitlab_rails['smtp_password'] = 'freelyformd%%'
         gitlab_rails['smtp_domain'] = 'smtp.zoho.com'
         gitlab_rails['gitlab_email_from'] = 'lab@freelyformd.com'
         gitlab_rails['gitlab_email_reply_to'] = 'lab@freelyformd.com'
@@ -29,10 +29,13 @@ services:
       - gitlab_config:/etc/gitlab
       - gitlab_logs:/var/log/gitlab
       - gitlab_data:/var/opt/gitlab
+    networks:
+      - default
+      - traefik-net
     deploy:
       labels:
         traefik.enable: "port"
-        traefik.frontend.rule: 'Host: lab.freelyformd.com, Host: registry.freelyformd.com'
+        traefik.frontend.rule: 'Host: lab.freelyformd.com, registry.freelyformd.com'
         traefik.port: 80
       placement:
         constraints:
@@ -40,6 +43,8 @@ services:
  
   runner:
     image: 'gitlab/gitlab-runner:v1.11.4'
+    networks:
+      - default
     volumes:
       - gitlab_runner_config:/etc/gitlab-runner
       - /var/run/docker.sock:/var/run/docker.sock
@@ -49,3 +54,8 @@ volumes:
   gitlab_logs:
   gitlab_data:
   gitlab_runner_config:
+
+networks:
+  default:
+  traefik-net:
+    external: true
