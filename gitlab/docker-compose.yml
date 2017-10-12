@@ -31,13 +31,13 @@ services:
       - gitlab_data:/var/opt/gitlab
     networks:
       - default
-      - traefik-net
+      - proxy
     deploy:
       labels:
         traefik.enable: "port"
         traefik.frontend.rule: 'Host: lab.freelyformd.com, registry.freelyformd.com'
         traefik.port: 80
-        traefik.docker.network: 'traefik-net'
+        traefik.docker.network: 'proxy'
       placement:
         constraints:
           - node.role == manager
@@ -49,6 +49,8 @@ services:
     volumes:
       - gitlab_runner_config:/etc/gitlab-runner
       - /var/run/docker.sock:/var/run/docker.sock
+    deploy:
+      replicas: 8
 
 volumes:
   gitlab_config:
@@ -58,5 +60,5 @@ volumes:
 
 networks:
   default:
-  traefik-net:
+  proxy:
     external: true

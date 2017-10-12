@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - mysql_storage:/var/lib/mysql
+    networks:
+      - database
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: mysql
+      MYSQL_ROOT_PASSWORD: root
+    restart: always
+    volumes:
+      - phpmyadmin_sessions:/sessions
+    networks:
+      - proxy
+      - database
+    deploy:
+      labels:
+        traefik.enable: "true"
+        traefik.port: 80
+        traefik.frontend.rule: "Host: store.freelyformd.com"
+        traefik.network: "proxy"
+
+volumes:
+  phpmyadmin_sessions:
+  mysql_storage:
+
+networks:
+  proxy:
+    external: true
+  database:
+    external: true
+
+  

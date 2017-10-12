@@ -9,7 +9,7 @@ services:
       - 443:443
       - 8080:8080
     networks:
-      - traefik-net
+      - proxy
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     deploy:
@@ -18,5 +18,5 @@ services:
           - node.role == manager
 
 networks:
-  traefik-net:
+  proxy:
     external: true

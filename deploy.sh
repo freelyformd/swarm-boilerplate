@@ -1,13 +1,26 @@
 #!/bin/sh
 
+echo "\n\n1. Applying configuration from env.sh"
+
 if [ -f env.sh ]; then
-    echo "1. Applying config from env.sh"
     ./env.sh
 fi
 
-if [ -f deployments.txt ]; then
+echo "\n\n2. Creating global networks"
 
-    echo "2. Stopping removed stacks"
+NETWORKS=$(docker network ls)
+
+if [ grep -q 'proxy' <<< $NETWORKS ]; then
+    docker network create -d overlay proxy
+fi
+
+if [ grep -q 'database' <<< $NETWORKS ]; then
+    docker network create -d overlay database
+fi
+
+echo "\n\n3. Stopping removed stacks"
+
+if [ -f deployments.txt ]; then
 
     while read p; do
 
@@ -22,15 +35,14 @@ if [ -f deployments.txt ]; then
 
 fi
 
-echo "3. Deploying current stacks"
+echo "\n\n4. Deploying current stacks"
 
 for D in *; do
 
     if [ -d "${D}" ]; then
         echo "--> Deploying ${D}"
         docker stack deploy -c "./${D}/docker-compose.yml" "${D}" --with-registry-auth
-        echo ""
-        echo ""
+        echo "\n"
         echo "${D}" >> deployments.txt
     fi
 

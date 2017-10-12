@@ -4,7 +4,7 @@ services:
   web:
     image: 'portainer/portainer'
     networks:
-      - traefik-net
+      - proxy
     volumes:
       - portainer_data:/data
       - /var/run/docker.sock:/var/run/docker.sock:ro
@@ -18,7 +18,7 @@ services:
           - node.role == manager
 
 networks:
-  traefik-net:
+  proxy:
     external: true
 
 volumes:
