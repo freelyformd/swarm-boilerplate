@@ -15,7 +15,6 @@ services:
     environment:
       PMA_HOST: mysql
       MYSQL_ROOT_PASSWORD: root
-    restart: always
     volumes:
       - phpmyadmin_sessions:/sessions
     networks:

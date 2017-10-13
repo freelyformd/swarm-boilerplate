@@ -51,7 +51,7 @@ for D in *; do
 
     if [ -d "${D}" ]; then
         echo "--> Deploying ${D}"
-        # docker stack deploy -c "./${D}/docker-compose.yml" "${D}" --with-registry-auth
+        docker stack deploy -c "./${D}/docker-compose.yml" "${D}" --with-registry-auth
         echo "\n"
         echo "${D}" >> deployments.txt
     fi
