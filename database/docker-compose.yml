@@ -13,6 +13,7 @@ services:
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     environment:
+      PMA_ABSOLUTE_URI: "https://store.freelyformd.com"
       PMA_HOST: mysql
       MYSQL_ROOT_PASSWORD: root
     volumes:
