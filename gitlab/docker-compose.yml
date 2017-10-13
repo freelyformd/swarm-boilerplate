@@ -43,7 +43,7 @@ services:
           - node.role == manager
  
   runner:
-    image: 'gitlab/gitlab-runner:v1.11.4'
+    image: 'gitlab/gitlab-runner'
     networks:
       - default
     volumes:
