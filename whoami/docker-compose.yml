@@ -10,6 +10,7 @@ services:
         traefik.enable: "true"
         traefik.frontend.rule: 'Host: whoami0.freelyformd.com'
         traefik.port: 80
+        traefik.docker.network: 'proxy'
 
   whoami1:
     image: emilevauge/whoami
@@ -20,6 +21,7 @@ services:
         traefik.enable: "true"
         traefik.frontend.rule: 'Host: whoami1.freelyformd.com'
         traefik.port: 80
+        traefik.docker.network: 'proxy'
         traefik.backend.loadbalancer.sticky: "true"
 
 
